@@ -1,2 +1,2 @@
-## Students of Swastik College B.Sc.SCIT batch 2077/ 2021
-### View site: https://swastik2077.vercel.app/
+## Id Card generator for students of B.Sc.CSIT Batch 2077 @Swastik
+### View site: https://vercel.com/sahilxkhadka/idcardgenerator
