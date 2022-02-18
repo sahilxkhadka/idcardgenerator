@@ -71,7 +71,7 @@ const App = () => {
                 name={names[index]}
                 address={jsonObj[index].address}
                 dob={dob}
-                roll="CSIT/077/20"
+                roll= {`CSIT/077/${index+1}`}
                 image={namesForImage[index].split(" ")[0].toLowerCase()}
               />
             </div>
