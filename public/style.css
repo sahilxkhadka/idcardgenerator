@@ -248,12 +248,12 @@ body {
   margin-bottom: 0;
 }
 .app__card-body_info-img {
-  width: 30%;
+  width: 28%;
   align-self: center;
   border-radius: inherit;
 }
 .app__card-body_info-img img {
-  width: 80%;
+  width: 100%;
   object-fit: cover;
   object-position: center;
 }

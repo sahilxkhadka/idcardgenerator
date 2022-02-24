@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import jsonObj from "../idcard.json";
 import loginLogo from "../assets/formlogo.jpg"
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [index, setIndex] = useState(0)
   const [dob, setDob] = useState("")
+  const [address, setAddress] = useState("")
   const [loggedSatus, setLogegdStatus] = useState([])
 
   useEffect(() => {
@@ -15,6 +15,7 @@ const App = () => {
       setLoggedIn(loginStatus[0])
       setIndex(loginStatus[1])
       setDob(loginStatus[2])
+      setAddress(loginStatus[3])
       setLogegdStatus(loginStatus)
     } else {
       setLoggedIn(false)
@@ -22,7 +23,6 @@ const App = () => {
   }, [])
   useEffect(() => {
     localStorage.setItem("login", JSON.stringify(loggedSatus))
-    console.log("use effect called")
   }, [loggedSatus])
 
   const names = ["Abid Adhikari", "Amirdip Dhimal", "Amitabh Tamang", "Anish Dahal", "Anish Dhakal", "Anisha Dhakal", "Aruna Tamang", "Ayush Tripathi", "Babi Khadka", "Bibek Budhathoki", "Bijaya Thapaliya", "Bikash Sah", "Binay Thakur", "Binita Tamang", "Bishal  Tamang", "Dukindra Shrestha", "Giriraj Thapa", "Hemant  Regmi", "Iraj Manandhar", "Karunesh Pandit", "Kebal Khadka", "Kumar  Basnet", "Muskan Rijal", "Pranav Thapa", "Pratikshya  Katwal", "Rakesh Joshi", "Rohan Sainju", "Rupesh Rai", "Sahil Khadka", "Samiksha  Ghimire", "Sandesh Thapa", "Sushil Chand", "Unishma  Dahal", "Utshav Khadka"];
@@ -32,22 +32,24 @@ const App = () => {
     alert("Match not found")
     setLoggedIn(false)
   }
-  const displayCard = (i, dateOfBirth) => {
+  const displayCard = (i, dateOfBirth, address) => {
     setLoggedIn(true)
     setIndex(i)
-    setLogegdStatus([true, i, dateOfBirth])
+    setLogegdStatus([true, i, dateOfBirth, address])
     setDob(dateOfBirth)
+    setAddress(address)
   }
 
   function handleLoginButton() {
     const firstName = document.getElementById("stdfname").value;
     const lastName = document.getElementById("stdlname").value;
     const dateOfBirth = document.getElementById("stddob").value
+    const address = document.getElementById("address").value
     userName = `${firstName.trim().toLowerCase()} ${lastName.trim().toLowerCase()}`;
     const i = names.findIndex((item) => {
       return item.toLowerCase() === userName;
     });
-    (i === -1) ? reDisplayForm() : displayCard(i, dateOfBirth);
+    (i === -1) ? reDisplayForm() : displayCard(i, dateOfBirth, address);
   }
 
   const namesForImage = ["Abid  Adhikari", "Amirdip Dhimal", "Amitabh Tamang", "suyog Dahal", "Anish Dhakal", "Anisha Dhakal", "Aruna Tamang", "Ayush Tripathi", "Babi Khadka", "Bibek Budhathoki", "Bijaya Thapaliya", "Bikash Sah", "Binay Thakur", "Binita Tamang", "Bishal  Tamang", "Dukindra Shrestha", "Giriraj Thapa", "Hemant  Regmi", "Iraj Manandhar", "Karunesh Pandit", "Kebal Khadka", "Kumar  Basnet", "Muskan Rijal", "Pranav Thapa", "Pratikshya  Katwal", "Rakesh Joshi", "Rohan Sainju", "Rupesh Rai", "Sahil Khadka", "Samiksha  Ghimire", "Sandesh Thapa", "Sushil Chand", "Unishma  Dahal", "Utshav Khadka"];
@@ -69,7 +71,7 @@ const App = () => {
             <div className="app__cards">
               <Card
                 name={names[index]}
-                address={jsonObj[index].address}
+                address={address}
                 dob={dob}
                 roll= {`CSIT/077/${index+1}`}
                 image={namesForImage[index].split(" ")[0].toLowerCase()}
@@ -84,6 +86,8 @@ const App = () => {
                 <input type="text" name="name" id="stdfname" />
                 <label htmlFor="stdlname">Last Name:</label>
                 <input type="text" name="lname" id="stdlname" />
+                <label htmlFor="address">Address: </label>
+                <input type="text" name="address" id="address" />
                 <label htmlFor="stddob">Date of Birth: </label>
                 <input type="date" name="dob" id="stddob" />
                 <button type="button" onClick={handleLoginButton}>View Id Card</button>
