@@ -228,7 +228,7 @@ body {
   align-items: center;
 }
 .app__card-body_info-content {
-  width: 65%;
+  flex: 1;
 }
 .info-content {
   width: 100%;
@@ -242,7 +242,7 @@ body {
   color: #c9184a;
 }
 .info-content h3:first-child {
-  width: 40%;
+  width: 35%;
 }
 .info-content h3:last-child {
   margin-bottom: 0;
@@ -470,7 +470,7 @@ footer .wave#wave4
     margin-bottom: 6px;
   }
   .info-content h3:first-child {
-    width: 45%;
+    width: 40%;
   }
   .app__card-body_button button {
     font-size: 0.7rem;
@@ -511,5 +511,16 @@ footer .wave#wave4
   }
   .app__login-img {
     display: none;
+  }
+}
+@media screen and (max-width: 350px) {
+  .app__card-footer_content p {
+    font-size: 0.5rem;
+  }
+  .info-content h3 {
+    font-size: 0.6rem;
+  }
+  .app__heading {
+    font-size: 1.2rem;
   }
 }
