@@ -8,7 +8,7 @@ const App = () => {
   const [dob, setDob] = useState("")
   const [address, setAddress] = useState("")
   const [loggedSatus, setLogegdStatus] = useState([])
-
+  const [year, setYear] = useState(0)
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage.getItem("login"))
     if (loginStatus) {
@@ -17,6 +17,8 @@ const App = () => {
       setDob(loginStatus[2])
       setAddress(loginStatus[3])
       setLogegdStatus(loginStatus)
+      const currentYear = new Date().getFullYear()
+      setYear(currentYear)
     } else {
       setLoggedIn(false)
     }
@@ -114,7 +116,7 @@ const App = () => {
             <li><a href="https://www.instagram.com/abid.adhikari/"><ion-icon name="logo-instagram"></ion-icon></a></li>
             <li><a href="https://twitter.com/sahilkhadka15"><ion-icon name="logo-twitter"></ion-icon></a></li>
           </ul>
-          <p>Copyright © Swastik Batch 2077 | All Rights Reserved</p>
+          <p>Copyright © Swastik Batch {year} | All Rights Reserved</p>
         </div>
       </footer>
     </div>
